@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYNTHIA INGABIRE | Multimedia & Information Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --dark: #0f0a1e;
+      --darker: #080514;
+      --light: #f0eeff;
+      --gray: #8b7daa;
+      --dark-gray: #1e1040;
+      --card-bg: rgba(15,10,30,0.78);
+      --border: rgba(124,58,237,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--darker);
+      padding-top: 80px;
+    }
+
+    .bg-effect {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+      background:
+        radial-gradient(ellipse at 10% 30%, rgba(124,58,237,0.13) 0%, transparent 52%),
+        radial-gradient(ellipse at 88% 68%, rgba(6,182,212,0.11) 0%, transparent 48%),
+        radial-gradient(ellipse at 52% 88%, rgba(124,58,237,0.08) 0%, transparent 42%),
+        radial-gradient(ellipse at 72% 12%, rgba(245,158,11,0.07) 0%, transparent 36%);
+    }
+
+    ::selection { background: var(--accent); color: var(--dark); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(8,5,20,0.96);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(124,58,237,0.25);
+      box-shadow: 0 2px 20px rgba(8,5,20,0.8);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; color: var(--light); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a {
+      color: var(--gray); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      transition: all 0.3s ease; position: relative; padding: 0.5rem 0;
+    }
+    .nav-links a:hover { color: var(--light); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--light); font-size: 1.5rem; cursor: pointer; }
+
+    /* HEADER */
+    header { text-align: center; padding: 5rem 0 3rem; position: relative; }
+
+    .profile-container {
+      width: 200px; height: 200px; margin: 0 auto 2rem;
+      border-radius: 50%; border: 4px solid var(--primary);
+      padding: 5px; position: relative;
+      animation: pulse 4s infinite;
+      background: rgba(15,10,30,0.7);
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(124,58,237,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(124,58,237,0); }
+      100% { box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+    }
+    .profile-initials {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; font-weight: 700; color: white; letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      opacity: 0; animation: fadeIn 1s ease forwards 0.3s; letter-spacing: -0.5px;
+    }
+    .title {
+      font-size: 1.2rem; color: var(--gray); margin-bottom: 2rem;
+      opacity: 0; animation: fadeIn 1s ease forwards 0.6s;
+      max-width: 680px; margin-left: auto; margin-right: auto; line-height: 1.8;
+    }
+    .title span { color: var(--accent); font-weight: 500; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-cta {
+      display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeIn 1s ease forwards 0.9s;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white; padding: 0.85rem 1.8rem; border-radius: 30px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(124,58,237,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(124,58,237,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--light);
+      padding: 0.85rem 1.8rem; border-radius: 30px;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      border: 1px solid rgba(124,58,237,0.4); transition: all 0.3s ease;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+      margin: 3rem 0 0;
+      opacity: 0; animation: fadeIn 1s ease forwards 1.2s;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
+    .stat-label { font-size: 0.85rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 4rem; opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: calc(var(--order) * 0.15s + 0.9s);
+      scroll-margin-top: 100px;
+    }
+    h2 {
+      font-size: 2rem; font-weight: 600; margin-bottom: 2rem;
+      color: transparent;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; background-clip: text;
+      position: relative; display: inline-block; letter-spacing: -0.5px;
+    }
+    h2::after {
+      content: ''; position: absolute; bottom: -10px; left: 0;
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      box-shadow: 0 10px 30px -15px rgba(8,5,20,0.7);
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(124,58,237,0.07), transparent);
+      transition: 0.5s;
+    }
+    .card:hover::before { left: 100%; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px -15px rgba(124,58,237,0.25); border-color: rgba(124,58,237,0.35); }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 6px; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--primary), var(--secondary), transparent);
+    }
+    .timeline-item { position: relative; padding: 0 0 2.5rem 2rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2rem; top: 6px; transform: translateX(50%);
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--darker);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
+    }
+    .timeline-period {
+      font-size: 0.82rem; color: var(--accent); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;
+    }
+    .timeline-title { font-size: 1.2rem; font-weight: 700; color: var(--light); margin-bottom: 0.2rem; }
+    .timeline-org { font-size: 1rem; color: var(--secondary); font-style: italic; margin-bottom: 0.8rem; }
+    .timeline-desc { color: var(--gray); line-height: 1.8; font-size: 0.95rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .skill-item {
+      padding: 1rem 1.3rem;
+      background: rgba(30,16,64,0.6);
+      border-radius: 10px; display: flex; align-items: center;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent; font-size: 0.95rem;
+    }
+    .skill-item:hover { background: rgba(124,58,237,0.15); transform: translateX(6px); border-left-color: var(--accent); }
+    .skill-item::before { content: '▸'; color: var(--primary); margin-right: 0.8rem; font-size: 0.85rem; flex-shrink: 0; }
+
+    /* Skill bar */
+    .skill-bar-item { margin-bottom: 1.2rem; }
+    .skill-bar-header { display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.92rem; gap: 0.5rem; }
+    .skill-bar-name { color: var(--light); font-weight: 500; }
+    .skill-bar-pct { color: var(--accent); flex-shrink: 0; }
+    .skill-bar-track { height: 6px; background: rgba(30,16,64,0.8); border-radius: 10px; overflow: hidden; }
+    .skill-bar-fill {
+      height: 100%; border-radius: 10px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      animation: growBar 1.4s ease forwards; transform-origin: left;
+    }
+    @keyframes growBar { from { width: 0; } }
+
+    /* CONTACT */
+    .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(30,16,64,0.55); border-radius: 10px; padding: 1rem 1.2rem;
+      border: 1px solid var(--border); transition: all 0.3s ease;
+    }
+    .contact-item:hover { border-color: rgba(124,58,237,0.4); }
+    .contact-item i { color: var(--accent); font-size: 1.2rem; width: 22px; text-align: center; }
+    .contact-item-text { font-size: 0.92rem; color: var(--gray); }
+    .contact-item-text strong { display: block; color: var(--light); font-size: 0.85rem; margin-bottom: 0.1rem; }
+
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .social-link {
+      width: 55px; height: 55px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(30,16,64,0.7); color: var(--gray); font-size: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid var(--border); text-decoration: none;
+    }
+    .social-link:hover { color: var(--accent); transform: translateY(-5px) scale(1.1); box-shadow: 0 10px 20px -5px rgba(245,158,11,0.25); }
+    .social-link.gmail:hover  { color: #EA4335; box-shadow: 0 10px 20px -5px rgba(234,67,53,0.3); }
+    .social-link.phone:hover  { color: #34A853; box-shadow: 0 10px 20px -5px rgba(52,168,83,0.3); }
+    .social-link.instagram:hover { color: #E1306C; box-shadow: 0 10px 20px -5px rgba(225,48,108,0.3); }
+    .social-link.linkedin:hover { color: #0A66C2; box-shadow: 0 10px 20px -5px rgba(10,102,194,0.3); }
+    .icon-svg { width: 26px; height: 26px; fill: currentColor; display: block; }
+
+    /* Contact form */
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; color: var(--gray); font-size: 0.9rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(30,16,64,0.6); color: var(--light);
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.3s ease; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    /* SUCCESS MODAL */
+    .success-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(8,5,20,0.82);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .success-overlay.show { opacity: 1; pointer-events: all; }
+    .success-modal {
+      background: linear-gradient(145deg, #1a0d3a, #0f0a1e);
+      border: 1px solid rgba(6,182,212,0.35);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 440px; width: 90%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(8,5,20,0.7), 0 0 0 1px rgba(6,182,212,0.1);
+      transform: scale(0.85) translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      position: relative; overflow: hidden;
+    }
+    .success-overlay.show .success-modal { transform: scale(1) translateY(0); }
+    .success-modal::before {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--secondary), var(--primary), transparent);
+      animation: shimmerLine 2.5s ease infinite;
+    }
+    @keyframes shimmerLine { 0%{left:-100%} 100%{left:100%} }
+    .success-icon-wrap {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, rgba(6,182,212,0.18), rgba(124,58,237,0.18));
+      border: 2px solid rgba(6,182,212,0.4);
+      display: flex; align-items: center; justify-content: center;
+      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both;
+    }
+    @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    .success-checkmark {
+      width: 38px; height: 38px; stroke: var(--secondary); stroke-width: 3;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 60; stroke-dashoffset: 60;
+      animation: drawCheck 0.6s ease 0.4s forwards;
+    }
+    @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+    .success-title { font-size: 1.6rem; font-weight: 700; color: var(--light); margin-bottom: 0.7rem; animation: fadeUp 0.5s ease 0.3s both; }
+    .success-subtitle { color: var(--gray); font-size: 0.97rem; line-height: 1.7; margin-bottom: 0.5rem; animation: fadeUp 0.5s ease 0.45s both; }
+    .success-email-tag {
+      display: inline-block; background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3); border-radius: 20px;
+      padding: 0.3rem 1rem; color: var(--secondary); font-size: 0.85rem;
+      margin: 0.8rem 0 1.8rem; animation: fadeUp 0.5s ease 0.55s both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+    .success-close {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white; border: none; border-radius: 30px;
+      padding: 0.8rem 2rem; font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease; box-shadow: 0 4px 18px rgba(6,182,212,0.3);
+      animation: fadeUp 0.5s ease 0.65s both;
+    }
+    .success-close:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,182,212,0.45); }
+    .confetti-dot {
+      position: absolute; width: 8px; height: 8px; border-radius: 50%;
+      animation: confettiFly 1.2s ease forwards; opacity: 0;
+    }
+    @keyframes confettiFly {
+      0%   { transform: translate(0,0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.3); opacity: 0; }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--gray); font-size: 0.9rem;
+    }
+    footer .footer-accent { color: var(--secondary); margin-top: 0.4rem; font-size: 0.85rem; }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.1rem; opacity: 0; pointer-events: none;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(124,58,237,0.4); z-index: 999;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(124,58,237,0.5); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));
+      border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0;
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0; color: var(--gray); line-height: 1.85;
+    }
+
+    /* TAGS */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+    .tag {
+      background: rgba(124,58,237,0.12); color: var(--secondary);
+      padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.82rem; font-weight: 500;
+      border: 1px solid rgba(124,58,237,0.28); transition: all 0.3s ease;
+    }
+    .tag:hover { background: rgba(124,58,237,0.25); transform: translateY(-2px); }
+
+    /* Badge */
+    .specialist-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(124,58,237,0.12));
+      border: 1px solid rgba(245,158,11,0.45);
+      border-radius: 30px; padding: 0.45rem 1.2rem;
+      font-size: 0.95rem; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.5px; margin-bottom: 1rem;
+      opacity: 0; animation: fadeIn 1s ease forwards 0.15s;
+    }
+
+    /* Area of knowledge grid */
+    .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .knowledge-item {
+      padding: 0.9rem 1.2rem;
+      background: rgba(30,16,64,0.5);
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+      font-size: 0.9rem; color: var(--gray);
+      transition: all 0.3s ease;
+    }
+    .knowledge-item:hover { background: rgba(124,58,237,0.15); color: var(--light); transform: translateX(4px); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem; }
+      h1 { font-size: 2rem; }
+      .mobile-menu-btn { display: block; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0; position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(8,5,20,0.98);
+        border-bottom: 1px solid var(--border); padding: 1rem 0;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li a { padding: 0.8rem 2rem; display: block; }
+      header { padding: 3rem 0 2rem; }
+      .profile-container { width: 150px; height: 150px; }
+      .title { font-size: 1rem; padding: 0 0.5rem; }
+      .stats-bar { gap: 1rem; }
+      .stat-number { font-size: 1.6rem; }
+      .header-cta { gap: 0.8rem; }
+      .btn-primary, .btn-secondary { padding: 0.75rem 1.3rem; font-size: 0.88rem; }
+      .card { padding: 1.2rem; margin-bottom: 1.5rem; }
+      .card:hover { transform: none; }
+      h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      .timeline-item { padding: 0 0 2rem 1.2rem; }
+      .timeline-dot { left: -1.5rem; }
+      .skills-two-col { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .skill-bar-header { flex-wrap: nowrap; align-items: flex-start; }
+      .skill-bar-name { font-size: 0.85rem; flex: 1; word-break: break-word; padding-right: 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr !important; }
+      .knowledge-grid { grid-template-columns: 1fr !important; }
+      .contact-info { grid-template-columns: 1fr; gap: 0.8rem; }
+      .social-links { gap: 1rem; }
+      footer { font-size: 0.82rem; padding: 1.8rem 0; }
+      .tag { font-size: 0.78rem; padding: 0.3rem 0.7rem; }
+    }
+    @media (max-width: 400px) {
+      h1 { font-size: 1.7rem; }
+      .stat-number { font-size: 1.4rem; }
+      .card { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-effect"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        CI<span>.</span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#knowledge">Knowledge</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="profile-container">
+        <img src="WhatsApp Image 2026-05-03 at 22.38.39.jpeg" alt="Cynthia Ingabire" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+      </div>
+      <h1>CYNTHIA INGABIRE</h1>
+      <div class="specialist-badge"><i class="fas fa-film"></i> Multimedia & Information Technology Specialist</div>
+      <p class="title">
+        <span>Multimedia Production</span> · <span>Software Development</span> · <span>Digital Media</span><br>
+        BSc IT · Creative Technology · Digital Innovation
+      </p>
+      <div class="header-cta">
+        <a href="#contact" class="btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
+        <a href="tel:+250784170100" class="btn-secondary"><i class="fas fa-phone"></i> +250 784 170 100</a>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-item"><span class="stat-number">BSc</span><span class="stat-label">IT Degree</span></div>
+        <div class="stat-item"><span class="stat-number">17+</span><span class="stat-label">Areas of Knowledge</span></div>
+        <div class="stat-item"><span class="stat-number">3D</span><span class="stat-label">Animation & VFX</span></div>
+        <div class="stat-item"><span class="stat-number">Full</span><span class="stat-label">Stack Skills</span></div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ABOUT -->
+      <section id="about" style="--order:1;">
+        <h2>Professional Profile</h2>
+        <div class="card">
+          <div class="highlight-box">
+            Cynthia Ingabire is a dedicated Information Technology professional specializing in Multimedia and Information Technology. She possesses a strong academic background that bridges information technology, software development, multimedia production, digital media creation, networking, and project management.
+          </div>
+          <p style="color:var(--gray); line-height:1.9; margin-top:1rem;">
+            Through her studies, Cynthia gained both practical and theoretical knowledge in programming, software engineering, multimedia design, digital content production, cloud computing, computer networking, data communication, and information systems. Her multidisciplinary training enables her to develop innovative digital solutions while effectively integrating technology and multimedia tools.
+          </p>
+          <div class="highlight-box" style="margin-top:1.5rem; border-left-color: var(--secondary);">
+            <strong style="color:var(--light);">Career Objective:</strong> To contribute technical expertise and creative multimedia skills in a dynamic organization where technology and innovation are used to create impactful digital solutions, while continuously developing professional competencies and embracing emerging technologies.
+          </div>
+          <div class="tag-list">
+            <span class="tag">Multimedia Production</span>
+            <span class="tag">Software Development</span>
+            <span class="tag">Digital Media</span>
+            <span class="tag">3D Animation</span>
+            <span class="tag">Video Editing</span>
+            <span class="tag">Cloud Computing</span>
+            <span class="tag">Networking</span>
+            <span class="tag">Project Management</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" style="--order:2;">
+        <h2>Education</h2>
+        <div class="card">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-period"><i class="fas fa-graduation-cap" style="margin-right:0.4rem;"></i>Bachelor's Degree</div>
+              <div class="timeline-title">Bachelor of Science in Information Technology (BSc IT)</div>
+              <div class="timeline-org">Option: Multimedia and Information Technology</div>
+              <div class="timeline-desc">
+                Comprehensive programme combining information technology, software development, multimedia production, digital media creation, networking, and project management. Gained both practical and theoretical foundations in programming, software engineering, multimedia design, digital content production, cloud computing, and information systems.
+              </div>
+              <div class="tag-list">
+                <span class="tag">Information Technology</span>
+                <span class="tag">Multimedia</span>
+                <span class="tag">Software Engineering</span>
+                <span class="tag">Networking</span>
+                <span class="tag">Cloud Computing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" style="--order:3;">
+        <h2>Skills &amp; Competencies</h2>
+        <div class="card">
+          <div class="skills-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;">
+            <!-- Skill bars -->
+            <div>
+              <h3 style="color:var(--accent); font-size:1rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:1.5rem; font-weight:600;">Technical Skills</h3>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Multimedia Design &amp; Development</span><span class="skill-bar-pct">90%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Video Production &amp; Editing</span><span class="skill-bar-pct">88%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Software Development Principles</span><span class="skill-bar-pct">85%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">3D Modeling &amp; Animation</span><span class="skill-bar-pct">82%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Visual Effects &amp; Motion Graphics</span><span class="skill-bar-pct">80%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Network Configuration &amp; Communication</span><span class="skill-bar-pct">78%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-bar-header"><span class="skill-bar-name">Cloud-Based Technologies</span><span class="skill-bar-pct">75%</span></div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+              </div>
+            </div>
+            <!-- Professional skills -->
+            <div>
+              <h3 style="color:var(--accent); font-size:1rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:1.5rem; font-weight:600;">Professional Competencies</h3>
+              <div class="skills-grid" style="grid-template-columns:1fr;">
+                <div class="skill-item">Creative Digital Content Development</div>
+                <div class="skill-item">Multimedia Project Planning &amp; Execution</div>
+                <div class="skill-item">Team Collaboration &amp; Communication</div>
+                <div class="skill-item">Technical Documentation</div>
+                <div class="skill-item">Research &amp; Analytical Skills</div>
+                <div class="skill-item">Ethical Use of Information Technology</div>
+                <div class="skill-item">Project Management Fundamentals</div>
+                <div class="skill-item">Innovation &amp; Technopreneurship</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border);">
+            <h3 style="color:var(--accent); font-size:1rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:1.2rem; font-weight:600;">Additional Technical Skills</h3>
+            <div class="skills-grid">
+              <div class="skill-item">Digital Photography &amp; Camera Operations</div>
+              <div class="skill-item">Audio Production &amp; Sound Design</div>
+              <div class="skill-item">Information Management</div>
+              <div class="skill-item">Problem Solving &amp; Analytical Thinking</div>
+              <div class="skill-item">Research &amp; Documentation</div>
+              <div class="skill-item">Storyboarding &amp; Content Creation</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AREAS OF KNOWLEDGE -->
+      <section id="knowledge" style="--order:4;">
+        <h2>Areas of Knowledge</h2>
+        <div class="card">
+          <div class="knowledge-grid">
+            <div class="knowledge-item"><i class="fas fa-photo-video" style="color:var(--accent); margin-right:0.6rem;"></i>Multimedia Development &amp; Production</div>
+            <div class="knowledge-item"><i class="fas fa-code" style="color:var(--accent); margin-right:0.6rem;"></i>Programming &amp; Software Development</div>
+            <div class="knowledge-item"><i class="fas fa-database" style="color:var(--accent); margin-right:0.6rem;"></i>Information Systems &amp; Technology</div>
+            <div class="knowledge-item"><i class="fas fa-network-wired" style="color:var(--accent); margin-right:0.6rem;"></i>Computer Networks &amp; Data Communication</div>
+            <div class="knowledge-item"><i class="fas fa-cloud" style="color:var(--accent); margin-right:0.6rem;"></i>Cloud Computing</div>
+            <div class="knowledge-item"><i class="fas fa-desktop" style="color:var(--accent); margin-right:0.6rem;"></i>Operating Systems</div>
+            <div class="knowledge-item"><i class="fas fa-sitemap" style="color:var(--accent); margin-right:0.6rem;"></i>Data Structures &amp; Algorithms</div>
+            <div class="knowledge-item"><i class="fas fa-cube" style="color:var(--accent); margin-right:0.6rem;"></i>Object-Oriented Programming</div>
+            <div class="knowledge-item"><i class="fas fa-drafting-compass" style="color:var(--accent); margin-right:0.6rem;"></i>Software Engineering</div>
+            <div class="knowledge-item"><i class="fas fa-film" style="color:var(--accent); margin-right:0.6rem;"></i>Digital Media Production</div>
+            <div class="knowledge-item"><i class="fas fa-camera" style="color:var(--accent); margin-right:0.6rem;"></i>Photography &amp; Camera Operations</div>
+            <div class="knowledge-item"><i class="fas fa-cut" style="color:var(--accent); margin-right:0.6rem;"></i>Audio &amp; Video Editing</div>
+            <div class="knowledge-item"><i class="fas fa-magic" style="color:var(--accent); margin-right:0.6rem;"></i>Visual Effects &amp; Compositing</div>
+            <div class="knowledge-item"><i class="fas fa-cubes" style="color:var(--accent); margin-right:0.6rem;"></i>3D Modeling &amp; Animation</div>
+            <div class="knowledge-item"><i class="fas fa-book-open" style="color:var(--accent); margin-right:0.6rem;"></i>Storyboarding &amp; Content Creation</div>
+            <div class="knowledge-item"><i class="fas fa-video" style="color:var(--accent); margin-right:0.6rem;"></i>Documentary &amp; Non-Fiction Film Production</div>
+            <div class="knowledge-item"><i class="fas fa-balance-scale" style="color:var(--accent); margin-right:0.6rem;"></i>IT Law &amp; Ethics</div>
+            <div class="knowledge-item"><i class="fas fa-flask" style="color:var(--accent); margin-right:0.6rem;"></i>Project Research &amp; Development</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" style="--order:5;">
+        <h2>Connect With Me</h2>
+        <div class="card">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="contact-item-text"><strong>Location</strong>Rwanda</div>
+            </div>
+            <a href="mailto:cynthiabeza2@gmail.com" class="contact-item" style="text-decoration:none; cursor:pointer;">
+              <i class="fas fa-envelope" style="color:var(--accent);"></i>
+              <div class="contact-item-text"><strong>Email</strong>cynthiabeza2@gmail.com</div>
+            </a>
+            <a href="https://www.linkedin.com/in/cynthia-ingabire" target="_blank" rel="noopener" class="contact-item" style="text-decoration:none; cursor:pointer;">
+              <i class="fab fa-linkedin" style="color:var(--accent);"></i>
+              <div class="contact-item-text"><strong>LinkedIn</strong>Cynthia Ingabire</div>
+            </a>
+          </div>
+
+          <div class="social-links">
+            <a href="tel:+250784170100" class="social-link phone" title="Call +250 784 170 100">
+              <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/>
+              </svg>
+            </a>
+            <a href="mailto:cynthiabeza2@gmail.com" class="social-link gmail" title="Send Email">
+              <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.147C21.69 2.28 24 3.434 24 5.457z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/cynthia-ingabire" target="_blank" rel="noopener" class="social-link linkedin" title="LinkedIn Profile">
+              <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/bezamiccynthia" target="_blank" rel="noopener" class="social-link instagram" title="Instagram @bezamiccynthia">
+              <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); text-align:left;">
+            <h3 style="color:var(--accent); font-size:1rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:1.5rem; font-weight:600;">
+              <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i>Send a Message
+            </h3>
+            <div id="formError" style="display:none; background:rgba(224,67,53,0.1); border:1px solid rgba(224,67,53,0.4); border-radius:10px; padding:1rem 1.5rem; color:#e04335; margin-bottom:1.5rem;">
+              <i class="fas fa-exclamation-circle" style="margin-right:0.5rem;"></i>Please fill in all fields before sending.
+            </div>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" rows="5" placeholder="Write your message here..."></textarea>
+            </div>
+            <div style="text-align:center;">
+              <button id="sendBtn" onclick="submitForm()" class="btn-primary" style="border:none; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-size:1rem;">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; <span id="year"></span> CYNTHIA INGABIRE. All rights reserved.</p>
+      <p class="footer-accent">Multimedia &amp; Information Technology Specialist</p>
+    </footer>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="success-overlay" id="successOverlay" onclick="closeSuccessModal(event)">
+    <div class="success-modal" id="successModal">
+      <div class="success-icon-wrap">
+        <svg class="success-checkmark" viewBox="0 0 52 52">
+          <polyline points="14,27 22,35 38,17"/>
+        </svg>
+      </div>
+      <div class="success-title">Message Sent! 🎉</div>
+      <div class="success-subtitle">
+        Thank you for reaching out to <strong style="color:var(--light);">Cynthia Ingabire</strong>.<br>
+        Your message has been received and she will get back to you soon.<br>
+        Expect a response within <strong style="color:var(--secondary);">24–48 hours</strong>.
+      </div>
+      <div class="success-email-tag"><i class="fab fa-instagram" style="margin-right:0.4rem;"></i>@bezamiccynthia</div>
+      <br>
+      <button class="success-close" onclick="window.closeSuccessModal()">
+        <i class="fas fa-check"></i> Perfect, thank you!
+      </button>
+    </div>
+  </div>
+
+  <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const btn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('navLinks');
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      btn.innerHTML = nav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
+      nav.classList.remove('active'); btn.innerHTML = '<i class="fas fa-bars"></i>';
+    }));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' });
+      });
+    });
+
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => topBtn.classList.toggle('visible', window.pageYOffset > 300));
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const animateOnScroll = () => {
+      document.querySelectorAll('section').forEach(s => {
+        if (s.getBoundingClientRect().top < window.innerHeight * 0.82) s.style.opacity = '1';
+      });
+    };
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
+
+    async function submitForm() {
+      const nameEl  = document.getElementById('name');
+      const emailEl = document.getElementById('email');
+      const msgEl   = document.getElementById('message');
+      const sendBtn = document.getElementById('sendBtn');
+      const errorBox = document.getElementById('formError');
+
+      const name  = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const msg   = msgEl.value.trim();
+
+      if (!name || !email || !msg) {
+        errorBox.style.display = 'block';
+        setTimeout(() => errorBox.style.display = 'none', 3000);
+        return;
+      }
+
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      errorBox.style.display = 'none';
+
+      nameEl.value = ''; emailEl.value = ''; msgEl.value = '';
+      showSuccessModal();
+
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    }
+
+    function showSuccessModal() {
+      document.getElementById('successOverlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      spawnConfetti(document.getElementById('successModal'));
+    }
+
+    window.closeSuccessModal = function(e) {
+      if (e && e.target !== document.getElementById('successOverlay')) return;
+      document.getElementById('successOverlay').classList.remove('show');
+      document.body.style.overflow = '';
+    };
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('successOverlay').classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+
+    function spawnConfetti(container) {
+      const colors = ['#7c3aed','#06b6d4','#f59e0b','#f0eeff','#E1306C'];
+      for (let i = 0; i < 18; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'confetti-dot';
+        dot.style.cssText = `
+          background:${colors[i % colors.length]};
+          left:${30 + Math.random()*40}%;
+          top:${20 + Math.random()*30}%;
+          --tx:${(Math.random()-0.5)*160}px;
+          --ty:${-(40 + Math.random()*120)}px;
+          animation-delay:${Math.random()*0.4}s;
+        `;
+        container.appendChild(dot);
+        setTimeout(() => dot.remove(), 1800);
+      }
+    }
+  </script>
+</body>
+</html>
